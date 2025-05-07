@@ -121,15 +121,15 @@ $$ \bm x^{(k+1)} = \bm x^{(k)} - \alpha \bm \Lambda \bm x^{(k)} + \beta (\bm x^{
 
 Stacking the current iterate and the previous one and taking the norm yield
 \begin{align}
-\begin{bmatrix} \bm x^{(k+1)} \\\\\\ \bm x^{(k)} \end{bmatrix} = \begin{bmatrix} (1+\beta)\bm I_n - \alpha \bm \Lambda & -\beta \\\\\\ \bm 0 & \bm I_n \end{bmatrix} \begin{bmatrix} \bm x^{(k)} \\\\\\ \bm x^{(k-1)} \end{bmatrix} . 
+\begin{bmatrix} \bm x^{(k+1)} \\\\\\ \bm x^{(k)} \end{bmatrix} = \begin{bmatrix} (1+\beta)\bm I_n - \alpha \bm \Lambda & -\beta \bm I_n \\\\\\ \bm I_n & \bm 0 \end{bmatrix} \begin{bmatrix} \bm x^{(k)} \\\\\\ \bm x^{(k-1)} \end{bmatrix} . 
 \end{align}
-Denote $\bm y^{(k)} = \begin{bmatrix} \bm x^{(k+1)} \\\\\\ \bm x^{(k)} \end{bmatrix}$ and $\bm T = \begin{bmatrix} (1+\beta)\bm I_n - \alpha \bm \Lambda & -\beta \\\\\\ \bm 0 & \bm I_n \end{bmatrix}$, we derive the exponential decrease in the norm of $\bm y$:
+Denote $\bm y^{(k)} = \begin{bmatrix} \bm x^{(k+1)} \\\\\\ \bm x^{(k)} \end{bmatrix}$ and $\bm T = \begin{bmatrix} (1+\beta)\bm I_n - \alpha \bm \Lambda & -\beta \\\\\\ \bm I_n & \bm 0 \end{bmatrix}$, we derive the exponential decrease in the norm of $\bm y$:
 
 $$ \norm{\bm y^{(k)}} = \norm{\bm T \bm y^{(k-1)}} = \norm{\bm T^k \bm y^{(0)}} \leq \norm{\bm T^k}_2 \norm{\bm y^{(0)}} \leq \bigl(\rho(\bm T) + o(1) \bigr)^k \norm{\bm y^{(0)}} , \tag{4} \label{equ:HB} $$
 
 where $\rho(\bm T)$ is the [spectral radius](https://en.wikipedia.org/wiki/Spectral_radius) of $\bm T$ and the last inequality uses [Gelfand’s formula](https://en.wikipedia.org/wiki/Spectral_radius#Gelfand's_formula). Thus, in order to determine the convergence rate, we will need to find the eigenvalues of $\bm T$ and determine their maximum absolute value. By carefully looking at its special structure, one can show that $\bm T$ is permutation-similar to a block diagonal matrix:
 \begin{align}
-\bm T \sim \begin{bmatrix} \bm T_1 & \bm 0 & \ldots & \bm 0 \\\\\\ \bm 0 & \bm T_2 & \ldots & \bm 0 \\\\\\ \vdots & & \ldots & \vdots \\\\\\ \bm 0 & \bm 0 & \ldots & \bm T_n \end{bmatrix} \quad \text{where} \quad \bm T_j = \begin{bmatrix} 1+\beta-\alpha \lambda_j & -\beta \\\\\\ 0 & 1 \end{bmatrix} \text{ for } j=1,2,\ldots,n . 
+\bm T \sim \begin{bmatrix} \bm T_1 & \bm 0 & \ldots & \bm 0 \\\\\\ \bm 0 & \bm T_2 & \ldots & \bm 0 \\\\\\ \vdots & & \ldots & \vdots \\\\\\ \bm 0 & \bm 0 & \ldots & \bm T_n \end{bmatrix} \quad \text{where} \quad \bm T_j = \begin{bmatrix} 1+\beta-\alpha \lambda_j & -\beta \\\\\\ 1 & 0 \end{bmatrix} \text{ for } j=1,2,\ldots,n . 
 \end{align}
 Hence, the eigenvalues of $\bm T$ are the union of the eigenvalues of $\bm T_j$. For each $j$, the eigenvalues of $\bm T_j$ are the two roots of the equation
 
